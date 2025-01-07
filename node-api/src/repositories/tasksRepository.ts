@@ -13,21 +13,21 @@ export class TasksRepository {
   private readonly filePath = "tasks.json";
 
   constructor() {
-    this.loadTasks(); // Carrega os dados ao iniciar a classe
+    this.loadTasks();
   }
 
   private saveTasks() {
-    // Salva as tarefas no arquivo JSON
+    
     fs.writeFileSync(this.filePath, JSON.stringify(this.tasks, null, 2), "utf-8");
   }
 
   private loadTasks() {
-    // Carrega as tarefas do arquivo JSON, se existir
+    
     if (fs.existsSync(this.filePath)) {
       const data = fs.readFileSync(this.filePath, "utf-8");
       this.tasks = JSON.parse(data);
       if (this.tasks.length > 0) {
-        this.currentId = Math.max(...this.tasks.map(task => task.id)) + 1; // Atualiza o currentId
+        this.currentId = Math.max(...this.tasks.map(task => task.id)) + 1; 
       }
     }
   }
@@ -40,7 +40,7 @@ export class TasksRepository {
       lang: null,
     };
     this.tasks.push(task);
-    this.saveTasks(); // Salva após criar a tarefa
+    this.saveTasks();
     return task;
   }
 
@@ -49,7 +49,7 @@ export class TasksRepository {
     if (taskIndex > -1) {
       this.tasks[taskIndex].summary = summary;
       this.tasks[taskIndex].lang = language;
-      this.saveTasks(); // Salva após atualizar a tarefa
+      this.saveTasks();
       return this.tasks[taskIndex];
     }
     return null;
@@ -65,6 +65,6 @@ export class TasksRepository {
 
   deleteTask(id: number) {
     this.tasks = this.tasks.filter(item => item.id !== id);
-    this.saveTasks(); // Salva após excluir a tarefa
+    this.saveTasks();
   }
 }
