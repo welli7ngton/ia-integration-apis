@@ -7,7 +7,7 @@ import { TasksRepository } from "../repositories/tasksRepository";
 const router = Router();
 const tasksRepository = new TasksRepository();
 const baseEndpoint = process.env.PYTHON_LLM_URL
-const allowedLnaguages = ["en", "pt", "es"]
+const allowedLanguages = ["en", "pt", "es"]
 
 // POST: Cria uma tarefa e solicita resumo ao serviço Python
 router.post("/", async (req: Request, res: Response) => {
@@ -17,7 +17,7 @@ router.post("/", async (req: Request, res: Response) => {
       return res.status(400).json({ error: '"Text" field is mandatory.' });
     }
 
-    if (!allowedLnaguages.includes(language)){
+    if (!allowedLanguages.includes(language)){
       return res.status(400).json({ error: 'Language not supported.' });
     }
 
