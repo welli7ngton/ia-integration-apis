@@ -79,7 +79,7 @@ router.delete("/:id", (req: Request, res: Response) => {
 
   tasksRepository.deleteTask(id);
 
-  return res.status(201).json("Task deleted.");
+  return res.status(200).json("Task deleted.");
 });
 
 export default router;
